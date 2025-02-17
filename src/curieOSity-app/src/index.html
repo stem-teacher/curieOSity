@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tauri Chemistry App</title>
+        <link rel="stylesheet" href="styles.css" />
+        <link
+            rel="stylesheet"
+            href="../node_modules/katex/dist/katex.min.css"
+        />
+    </head>
+    <body>
+        <input id="sidebar-toggle" type="checkbox" title="Toggle sidebar" />
+        <label id="sidebar-backdrop" for="sidebar-toggle"></label>
+
+        <nav id="sidebar">
+            <ol>
+                <label id="sidebar-close" for="sidebar-toggle"></label>
+                <li class="sidebar-link"><a href="#">Course Title</a></li>
+            </ol>
+            <ol>
+                <li class="sidebar-link sidebar-link-active">
+                    <a href="#">Lesson 1</a>
+                </li>
+                <li class="sidebar-link"><a href="#">Lesson 2</a></li>
+                <li class="sidebar-link"><a href="#">Lesson 3</a></li>
+            </ol>
+        </nav>
+
+        <div id="center-content">
+            <aside id="toc">
+                <nav>
+                    <div>Contents</div>
+                    <ol id="toc-links">
+                        <!-- Table of Contents links will be inserted here by JavaScript -->
+                    </ol>
+                </nav>
+            </aside>
+
+            <main id="main-content">
+                <div id="markdown-content">
+                    <!-- Markdown content will be rendered here by JavaScript -->
+                </div>
+            </main>
+
+            <footer id="footer">
+                <div>© Virtualnation Pty Ltd. All rights reserved.</div>
+            </footer>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>

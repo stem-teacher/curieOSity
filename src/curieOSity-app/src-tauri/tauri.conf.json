@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "CurieOSity",
+  "version": "0.1.0",
+  "identifier": "com.vn.curieosity",
+  "build": {
+    "frontendDist": "../src"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [
+      {
+        "title": "CurieOSity",
+        "width": 900,
+        "height": 785,
+        "resizable": true
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": ["icons/CurieOsity_HighRes.icns", "icons/CurieOsity_HighRes.ico"]
+  }
+}

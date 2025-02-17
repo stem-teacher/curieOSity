@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="plot-d6a7b5" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400"><style>
+     /* Minimal styling for Observable Plot v0.6+ - FINAL with Grids and Rules */
+     .plot-axis line,
+     .plot-axis path,
+     .plot-domain,
+     .plot-tick line {
+       stroke: #000;
+       stroke-width: 1;
+     }
+     .plot-tick text,
+     .plot-label {
+       font-family: sans-serif;
+       font-size: 10px;
+       fill: #000;
+     }
+     .plot-grid line {
+       stroke: #ccc;
+       stroke-width: 1;
+     }
+     .plot-domain { /* Style for plot-domain (axis lines) */
+        fill: none;
+        stroke: #000;
+        stroke-width: 1;
+      }
+      .plot-axis path { /* Style for plot-axis path (axis lines) - redundant but safe */
+        fill: none;
+        stroke: #000;
+        stroke-width: 1;
+      }
+      .plot-rule { /* Style for manually added axis rules */
+        stroke: #000;
+        stroke-width: 1;
+        stroke-linecap: square;
+      }
+   </style><style>:where(.plot-d6a7b5) {
+  --plot-background: white;
+  display: block;
+  height: auto;
+  height: intrinsic;
+  max-width: 100%;
+}
+:where(.plot-d6a7b5 text),
+:where(.plot-d6a7b5 tspan) {
+  white-space: pre;
+}</style><g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor"><path transform="translate(40,370)" d="M0,0L-6,0"/><path transform="translate(40,326.25)" d="M0,0L-6,0"/><path transform="translate(40,282.5)" d="M0,0L-6,0"/><path transform="translate(40,238.75)" d="M0,0L-6,0"/><path transform="translate(40,195)" d="M0,0L-6,0"/><path transform="translate(40,151.25)" d="M0,0L-6,0"/><path transform="translate(40,107.5)" d="M0,0L-6,0"/><path transform="translate(40,63.75)" d="M0,0L-6,0"/><path transform="translate(40,20)" d="M0,0L-6,0"/></g><g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)"><text y="0.32em" transform="translate(40,370)">0</text><text y="0.32em" transform="translate(40,326.25)">50</text><text y="0.32em" transform="translate(40,282.5)">100</text><text y="0.32em" transform="translate(40,238.75)">150</text><text y="0.32em" transform="translate(40,195)">200</text><text y="0.32em" transform="translate(40,151.25)">250</text><text y="0.32em" transform="translate(40,107.5)">300</text><text y="0.32em" transform="translate(40,63.75)">350</text><text y="0.32em" transform="translate(40,20)">400</text></g><g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-17)"><text y="0.71em" transform="translate(40,20)">↑ Pressure (atm)</text></g><g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor"><path transform="translate(40,370)" d="M0,0L0,6"/><path transform="translate(130.625,370)" d="M0,0L0,6"/><path transform="translate(221.25,370)" d="M0,0L0,6"/><path transform="translate(311.875,370)" d="M0,0L0,6"/><path transform="translate(402.5,370)" d="M0,0L0,6"/><path transform="translate(493.125,370)" d="M0,0L0,6"/><path transform="translate(583.75,370)" d="M0,0L0,6"/></g><g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)"><text y="0.71em" transform="translate(40,370)">0</text><text y="0.71em" transform="translate(130.625,370)">100</text><text y="0.71em" transform="translate(221.25,370)">200</text><text y="0.71em" transform="translate(311.875,370)">300</text><text y="0.71em" transform="translate(402.5,370)">400</text><text y="0.71em" transform="translate(493.125,370)">500</text><text y="0.71em" transform="translate(583.75,370)">600</text></g><g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)"><text transform="translate(620,370)">Volume (V) →</text></g><g aria-label="rule" stroke="currentColor"><line x1="40" x2="40" y1="370" y2="20"/></g><g aria-label="rule" stroke="currentColor"><line x1="40" x2="620" y1="370" y2="370"/></g><g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1"><line x1="40" x2="40" y1="20" y2="370"/><line x1="130.625" x2="130.625" y1="20" y2="370"/><line x1="221.25" x2="221.25" y1="20" y2="370"/><line x1="311.875" x2="311.875" y1="20" y2="370"/><line x1="402.5" x2="402.5" y1="20" y2="370"/><line x1="493.125" x2="493.125" y1="20" y2="370"/><line x1="583.75" x2="583.75" y1="20" y2="370"/></g><g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1"><line x1="40" x2="620" y1="370" y2="370"/><line x1="40" x2="620" y1="326.25" y2="326.25"/><line x1="40" x2="620" y1="282.5" y2="282.5"/><line x1="40" x2="620" y1="238.75" y2="238.75"/><line x1="40" x2="620" y1="195" y2="195"/><line x1="40" x2="620" y1="151.25" y2="151.25"/><line x1="40" x2="620" y1="107.5" y2="107.5"/><line x1="40" x2="620" y1="63.75" y2="63.75"/><line x1="40" x2="620" y1="20" y2="20"/></g><g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M40.091,361.25L40.181,365.625L40.272,367.083L40.363,367.813L40.453,368.25L40.544,368.542L40.634,368.75L40.725,368.906L40.816,369.028L40.906,369.125L40.997,369.205L41.088,369.271L41.178,369.327L41.269,369.375L41.359,369.417L41.45,369.453L41.541,369.485L41.631,369.514L41.722,369.539L41.813,369.563L41.903,369.583L41.994,369.602L42.084,369.62L42.175,369.635L42.266,369.65L42.356,369.663L42.447,369.676L42.538,369.688L42.628,369.698L42.719,369.708L42.809,369.718L42.9,369.727L42.991,369.735L43.081,369.743L43.172,369.75L43.262,369.757L43.353,369.764L43.444,369.77L43.534,369.776L43.625,369.781L43.716,369.787L43.806,369.792L43.897,369.797L43.988,369.801L44.078,369.806L44.169,369.81L44.259,369.814L44.35,369.818L44.441,369.821L44.531,369.825L44.622,369.828L44.713,369.832L44.803,369.835L44.894,369.838L44.984,369.841L45.075,369.844L45.166,369.846L45.256,369.849L45.347,369.852L45.438,369.854L45.528,369.857L45.619,369.859L45.709,369.861L45.8,369.863L45.891,369.865L45.981,369.867L46.072,369.869L46.163,369.871L46.253,369.873L46.344,369.875L46.434,369.877L46.525,369.878L46.616,369.88L46.706,369.882L46.797,369.883L46.887,369.885L46.978,369.886L47.069,369.888L47.159,369.889L47.25,369.891L47.341,369.892L47.431,369.893L47.522,369.895L47.613,369.896L47.703,369.897L47.794,369.898L47.884,369.899L47.975,369.901L48.066,369.902L48.156,369.903L48.247,369.904L48.338,369.905L48.428,369.906L48.519,369.907L48.609,369.908L48.7,369.909L48.791,369.91L48.881,369.911L48.972,369.912L49.063,369.913"/></g></svg>

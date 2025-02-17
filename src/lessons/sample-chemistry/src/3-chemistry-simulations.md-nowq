@@ -1,0 +1,238 @@
+---
+title: Interactive Reaction Rate Simulation
+description: Explore how temperature affects the rate of a chemical reaction using a particle-based simulation.
+---
+```js
+import * as Plot from "npm:@observablehq/plot";
+import * as d3 from "npm:d3";
+import React, { useState, useEffect, useRef, useCallback } from 'npm:react';
+import { Card, CardContent, CardHeader, CardTitle } from 'npm:@/components/ui/card';
+import { Slider } from 'npm:@/components/ui/slider';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'npm:recharts';
+```
+
+# Interactive Reaction Rate Simulation
+
+This simulation demonstrates how temperature influences the rate of a chemical reaction by affecting the kinetic energy of reactant particles and their ability to overcome the activation energy barrier.
+
+**Instructions:**
+
+1.  Use the **Temperature Slider** to adjust the temperature of the reaction system.
+2.  Observe how the **particle motion** changes with temperature.
+3.  Watch the **collision frequency** and notice which collisions are **successful** (lead to a reaction - indicated by a color change).
+4.  Observe the **Energy Profile Diagram** to see how temperature affects the distribution of particle energies relative to the activation energy.
+5.  Monitor the **Reaction Rate Counter** to see how the rate changes with temperature.
+
+**Goal:** Understand how increasing temperature increases reaction rate by increasing kinetic energy and the proportion of successful collisions.
+content_copy download
+
+
+```jsx
+
+
+
+const ReactionSimulation = () => {
+  // Constants
+  const Ea = 50; // Activation energy in kJ/mol
+  const R = 0.008314; // Gas constant in kJ/(mol·K)
+  const particleCount = 50;
+  const canvasWidth = 400;
+  const canvasHeight = 300;
+
+  const [temperature, setTemperature] = useState(300); // K
+  const [reactionData, setReactionData] = useState([]);
+  const canvasRef = useRef(null);
+  const animationRef = useRef(null);
+  const particlesRef = useRef([]);
+
+  // Initialize particles
+  const initializeParticles = useCallback(() => {
+    return Array(particleCount).fill().map(() => ({
+      x: Math.random() * canvasWidth,
+      y: Math.random() * canvasHeight,
+      vx: (Math.random() - 0.5) * Math.sqrt(temperature/300) * 4,
+      vy: (Math.random() - 0.5) * Math.sqrt(temperature/300) * 4,
+      radius: 5,
+      reacted: false,
+      energy: 0.5 * Math.random() * temperature/300
+    }));
+  }, [temperature]);
+
+  // Reset particles when temperature changes
+  useEffect(() => {
+    particlesRef.current = initializeParticles();
+  }, [temperature, initializeParticles]);
+
+  // Animation loop
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    let collisions = 0;
+    let successfulCollisions = 0;
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+
+      // Update particle positions and handle collisions
+      const updatedParticles = particlesRef.current.map(particle => {
+        // Update position
+        let newX = particle.x + particle.vx;
+        let newY = particle.y + particle.vy;
+
+        // Bounce off walls
+        if (newX < 0 || newX > canvasWidth) particle.vx *= -1;
+        if (newY < 0 || newY > canvasHeight) particle.vy *= -1;
+
+        return {
+          ...particle,
+          x: newX,
+          y: newY,
+          energy: 0.5 * (particle.vx * particle.vx + particle.vy * particle.vy)
+        };
+      });
+
+      // Check for collisions
+      for (let i = 0; i < updatedParticles.length; i++) {
+        for (let j = i + 1; j < updatedParticles.length; j++) {
+          const p1 = updatedParticles[i];
+          const p2 = updatedParticles[j];
+
+          const dx = p2.x - p1.x;
+          const dy = p2.y - p1.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < p1.radius + p2.radius) {
+            collisions++;
+
+            // Calculate collision energy
+            const totalEnergy = p1.energy + p2.energy;
+
+            // Check if collision has enough energy to overcome activation barrier
+            if (totalEnergy > Ea/(R*temperature)) {
+              successfulCollisions++;
+              updatedParticles[i].reacted = true;
+              updatedParticles[j].reacted = true;
+            }
+
+            // Elastic collision
+            const angle = Math.atan2(dy, dx);
+            const sin = Math.sin(angle);
+            const cos = Math.cos(angle);
+
+            // Rotate velocities
+            const vx1 = p1.vx * cos + p1.vy * sin;
+            const vy1 = p1.vy * cos - p1.vx * sin;
+            const vx2 = p2.vx * cos + p2.vy * sin;
+            const vy2 = p2.vy * cos - p2.vx * sin;
+
+            // Update velocities
+            updatedParticles[i].vx = vx2 * cos - vy1 * sin;
+            updatedParticles[i].vy = vy1 * cos + vx2 * sin;
+            updatedParticles[j].vx = vx1 * cos - vy2 * sin;
+            updatedParticles[j].vy = vy2 * cos + vx1 * sin;
+          }
+        }
+      }
+
+      // Draw particles
+      updatedParticles.forEach(particle => {
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+        ctx.fillStyle = particle.reacted ? '#4CAF50' : '#FF5722';
+        ctx.fill();
+        ctx.closePath();
+      });
+
+      particlesRef.current = updatedParticles;
+
+      // Update reaction data
+      const reactionProgress = successfulCollisions / particleCount;
+      setReactionData(prevData => [...prevData, {
+        time: prevData.length,
+        progress: reactionProgress,
+        rate: successfulCollisions / (prevData.length + 1)
+      }].slice(-20));
+
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    animate();
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [temperature]);
+
+  // Energy profile diagram data
+  const energyProfileData = [
+    { x: 0, y: 0, label: 'Reactants' },
+    { x: 50, y: Ea, label: 'Transition State' },
+    { x: 100, y: -10, label: 'Products' }
+  ];
+
+  return (
+    <Card className="w-full max-w-4xl p-6">
+      <CardHeader>
+        <CardTitle>Temperature Effect on Reaction Rate</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-6">
+        <div className="space-y-2">
+          <label className="text-sm font-medium">Temperature: {temperature} K</label>
+          <Slider
+            value={[temperature]}
+            onValueChange={([value]) => setTemperature(value)}
+            min={200}
+            max={1000}
+            step={10}
+            className="w-full"
+          />
+        </div>
+
+        <div className="grid grid-cols-2 gap-4">
+          {/* Particle simulation */}
+          <div className="border rounded p-4">
+            <h3 className="text-lg font-medium mb-2">Particle Collisions</h3>
+            <canvas
+              ref={canvasRef}
+              width={canvasWidth}
+              height={canvasHeight}
+              className="border"
+            />
+          </div>
+
+          {/* Energy profile diagram */}
+          <div className="border rounded p-4">
+            <h3 className="text-lg font-medium mb-2">Energy Profile</h3>
+            <LineChart width={400} height={300} data={energyProfileData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="x" />
+              <YAxis />
+              <Tooltip />
+              <Line type="monotone" dataKey="y" stroke="#8884d8" />
+            </LineChart>
+          </div>
+        </div>
+
+        {/* Reaction progress chart */}
+        <div className="border rounded p-4">
+          <h3 className="text-lg font-medium mb-2">Reaction Progress</h3>
+          <LineChart width={800} height={200} data={reactionData}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="time" />
+            <YAxis />
+            <Tooltip />
+            <Line type="monotone" dataKey="progress" stroke="#82ca9d" name="Progress" />
+            <Line type="monotone" dataKey="rate" stroke="#8884d8" name="Rate" />
+          </LineChart>
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
+
+export default ReactionSimulation;
+display(ReactionSimulation)
+```
