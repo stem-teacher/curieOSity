@@ -1,0 +1,42 @@
+Context:
+
+We have been working on a project to generate data science graphs for teaching materials using the Observable Framework within a Tauri desktop application. The goal was to create static SVG and PNG graphs server-side using Node.js, JSDOM, and Observable Plot, and embed these graphs within Markdown lessons rendered in the Tauri app.
+
+Challenges Encountered:
+
+- **Initial Issue: Missing Axes:** Generated Observable Plot SVGs in the Tauri/JSDOM environment were not displaying axes.
+- **CSS Styling Problems:**  Suspected CSS styling issues preventing axis lines from rendering.
+- **CSS Selector Corrections:** Iteratively refined CSS selectors to target Observable Plot elements correctly, inlined CSS into SVGs.
+- **Manual Axis Implementation:**  Implemented manual axis lines using `Plot.ruleX` and `Plot.ruleY` as a workaround for automatic axis generation failing in JSDOM.
+- **Grid Line Implementation:** Added `Plot.gridX` and `Plot.gridY` and CSS styling for grid lines.
+- **File Structure Issues:**  Repeatedly encountered problems with incorrect file paths and project structure, leading to CSS and JavaScript changes not being reflected in the running Tauri app. Debugging scripts were created to analyze file paths and contents.
+- **Persistent Caching/Build Problems:**  Suspected caching or build system issues preventing code updates from being loaded, requiring aggressive cache clearing and rebuild steps.
+- **Inconsistent Plot Rendering:** Boyle's Law plot partially worked (axes and grids visible, but no graph line initially), while Charles' and Gay-Lussac plots were missing axes entirely.
+- **Suspected JSDOM/Observable Plot Incompatibility:**  Hypothesized that Observable Plot's automatic axis generation might rely on browser-specific features not fully emulated by JSDOM, leading to unreliable server-side rendering.
+- **Manual Domain/Range Control:**  Attempted to control axis scales by explicitly setting `domain` and `range` in Observable Plot configurations, but this led to scale issues and inconsistent behavior.
+- **Overall Frustration:**  The process has become slow, error-prone, and feels "hacky," raising concerns about the reliability and efficiency of Observable Framework for this specific use case (server-side SVG generation for a Tauri app).
+
+Desired Application Requirements (Reminder):
+
+- **Data Science Graphs for Teaching:**  Generate various types of data science graphs (line plots, bar charts, scatter plots, etc.) for inclusion in teaching materials.
+- **Markdown Lesson Rendering:**  Render Markdown lesson content with proper formatting, including support for code blocks, lists, headings, etc.
+- **LaTeX Support (Chemistry Focus):**  Render LaTeX mathematical and chemical formulas beautifully within the lessons (using KaTeX).
+- **Table of Contents Generation:**  Automatically generate a table of contents for each lesson page.
+- **Sidebar Navigation Menu:**  Create a sidebar menu to navigate between different lessons and course sections.
+- **Handout/Exam Generation (LaTeX):**  Enable generation of LaTeX documents (PDF handouts and exams) from templates, incorporating data and lesson content.
+- **Quiz Generation (Future):**  Capability to integrate quizzes into lessons.
+- **AI Tutoring Integration (Future):**  Potential integration with AI tutoring functionalities.
+- **Cross-Platform Desktop Application (Tauri):**  Package everything into a cross-platform desktop application using Tauri.
+
+Proposed Pivot:
+
+Given the challenges with Observable Framework for reliable server-side SVG generation in Tauri, the user proposes to pivot to a different, more direct approach:
+
+- **Shift Focus from Observable Plot to D3.js for Graphing:** Use D3.js directly within the Tauri frontend for creating data visualizations. D3.js offers more low-level control and might be more predictable in a Tauri/webview environment.
+- **Create a Local AI Chat Application (Parallel Project):**  Develop a *separate*, parallel Tauri application focused on AI chat functionality, mimicking Google AI Studio but running locally and integrating with multiple AI APIs (Google, OpenAI, Claude) and local file system access. This application is intended to streamline data interaction, experimentation, and potentially assist in content creation or tutoring aspects of the overall project.
+
+Request:
+
+- Provide a detailed prompt for creating this new, local AI Chat application using Tauri, including specifications for UI, functionality, and technical considerations.
+
+End of Context.

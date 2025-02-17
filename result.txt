@@ -1,0 +1,47 @@
+--- DEBUG INFO SCRIPT V4 START ---
+
+--- 1. File Paths (V4 - NEW Project Root) ---
+Project Root Directory (NEW): /Users/philiphaynes/devel/teaching/projects/curieOSity/src
+CurieOSity App Directory: /Users/philiphaynes/devel/teaching/projects/curieOSity
+Src Directory (under NEW Root): /Users/philiphaynes/devel/teaching/projects/curieOSity/src/src
+Assets Directory (under NEW Src): /Users/philiphaynes/devel/teaching/projects/curieOSity/src/src/assets
+Lessons Directory (under NEW Src): /Users/philiphaynes/devel/teaching/projects/curieOSity/src/src/lessons
+node_modules Directory (under NEW Src): /Users/philiphaynes/devel/teaching/projects/curieOSity/src/src/node_modules
+index.html Path: /Users/philiphaynes/devel/teaching/projects/curieOSity/src/src/index.html
+styles.css Path: /Users/philiphaynes/devel/teaching/projects/curieOSity/src/src/styles.css
+script.js Path: /Users/philiphaynes/devel/teaching/projects/curieOSity/src/src/script.js
+katex.min.css Path (Expected): /Users/philiphaynes/devel/teaching/projects/curieOSity/src/src/node_modules/katex/dist/katex.min.css
+
+--- 2. Key Directory Existence (V4 - Adjusted) ---
+Src directory exists (under NEW Root): false
+Assets directory exists (under NEW Src): false
+Lessons directory exists (under NEW Src): false
+node_modules exists in src/ (under NEW Root): false
+
+--- 3. File Contents (V4 - Adjusted Paths) ---
+
+--- Content of: index.html ---
+Error reading index.html: ENOENT: no such file or directory, open '/Users/philiphaynes/devel/teaching/projects/curieOSity/src/src/index.html'
+File likely does not exist or cannot be accessed at: /Users/philiphaynes/devel/teaching/projects/curieOSity/src/src/index.html
+
+--- Content of: styles.css ---
+Error reading styles.css: ENOENT: no such file or directory, open '/Users/philiphaynes/devel/teaching/projects/curieOSity/src/src/styles.css'
+File likely does not exist or cannot be accessed at: /Users/philiphaynes/devel/teaching/projects/curieOSity/src/src/styles.css
+
+--- Content of: script.js ---
+Error reading script.js: ENOENT: no such file or directory, open '/Users/philiphaynes/devel/teaching/projects/curieOSity/src/src/script.js'
+File likely does not exist or cannot be accessed at: /Users/philiphaynes/devel/teaching/projects/curieOSity/src/src/script.js
+
+--- Content of: package.json ---
+Error reading package.json: ENOENT: no such file or directory, open '/Users/philiphaynes/devel/teaching/projects/curieOSity/src/src/package.json'
+File likely does not exist or cannot be accessed at: /Users/philiphaynes/devel/teaching/projects/curieOSity/src/src/package.json
+
+--- Content of: katex.min.css ---
+Error reading katex.min.css: ENOENT: no such file or directory, open '/Users/philiphaynes/devel/teaching/projects/curieOSity/src/src/node_modules/katex/dist/katex.min.css'
+File likely does not exist or cannot be accessed at: /Users/philiphaynes/devel/teaching/projects/curieOSity/src/src/node_modules/katex/dist/katex.min.css
+
+--- 4. System Info ---
+Operating System: darwin
+Node.js Version: v23.7.0
+
+--- DEBUG INFO SCRIPT V4 END ---
